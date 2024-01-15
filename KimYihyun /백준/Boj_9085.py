@@ -11,8 +11,6 @@ for i in range(T):
     N = int(input())
     # N개의 자연수
     numbers = list(map(int, input().split()))
-    for j in range(N):
-        sum += numbers[j]
     #합 출력
-    print(sum)
+    print(sum(numbers))
 
