@@ -5,7 +5,7 @@ sys.stdin = open("limsumin/study/dp/input.txt","rt")
 
 X = int(input())
 
-dp = [0] * 300001
+dp = [0] * 30001
 
 for i in range(2, X+1):
     dp[i] = dp[i-1] + 1 # 1을 더하는 경우
