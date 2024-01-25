@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/2776
 # 테스트 케이스의 개수 입력
 T = int(input())
 
@@ -22,9 +23,7 @@ for _ in range(T):
     M = int(input())
     array2 = list(map(int, input().split()))
     array1.sort()
-
-
-for i in array2:
-    start = 0
-    end = M - 1
-    print(search_answer(array1, i, start, end))
+    for i in array2:
+        start = 0
+        end = N - 1
+        print(search_answer(array1, i, start, end))
