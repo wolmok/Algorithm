@@ -1,21 +1,24 @@
 # 최소 비용 구하기
 # https://www.acmicpc.net/problem/1916
-# 답 맞고 시간 초과
+# 답 맞고 시간 초과 - input 방식 변경 + dictionary 사용해서 해결
 
+import sys
 import heapq
+from collections import defaultdict
+
 INF = int(1e9)
 
-n = int(input())  # 도시 개수
-m = int(input())  # 버스 개수
+n = int(sys.stdin.readline().strip())
+m = int(sys.stdin.readline().strip())
 
 # 도시, 버스 저장용 리스트
-graph = [[] for _ in range(n+1)]
+graph = defaultdict(list)
 
 for i in range(m):
-    a, b, price = map(int, input().split())  # 출발 도시 - 도착 도시 - 버스 비용
+    a, b, price = map(int, sys.stdin.readline().split())  # 출발 도시 - 도착 도시 - 버스 비용
     graph[a].append((b, price))
 
-start, end = map(int, input().split())  # 시작, 도착 도시
+start, end = map(int, sys.stdin.readline().split())  # 시작, 도착 도시
 
 min_price = [INF]*(n+1)
 
