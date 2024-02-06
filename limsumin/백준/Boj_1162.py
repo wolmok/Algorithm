@@ -7,11 +7,12 @@ from collections import defaultdict
 
 sys.stdin = open("limsumin/백준/input.txt", "rt")  
 
-INF = int(1e9)
+INF = float('inf') # 질문 게시판에 이렇게 쓰면 해결이 된다고 나와 있었음
 
 n, m, k = map(int, sys.stdin.readline().split())
 
 graph = defaultdict(list)
+# 도로 포장 개수 관리를 위해 2차원 배열로 정의
 distance = [[INF for _ in range(k+1)] for _ in range(n+1)]
 
 for _ in range(m):
