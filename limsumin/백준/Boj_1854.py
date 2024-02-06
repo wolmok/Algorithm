@@ -31,9 +31,9 @@ def dijkstra(start):
             cost = c + cur_dist
             if len(distance[b]) <= k:
                 heapq.heappush(queue, (cost, b))
-                heapq.heappush(distance[b], -cost)
+                heapq.heappush(distance[b], -cost) # max-heap 으로 구현
             else:
-                if distance[b][0] < -cost:
+                if distance[b][0] < -cost: # 거리 가장 긴 경로 vs 새로운 경로
                     heapq.heappop(distance[b])
                     heapq.heappush(queue, (cost, b))
                     heapq.heappush(distance[b], -cost)
