@@ -4,36 +4,34 @@
 import sys
 import heapq
 
-INF = int(1e9)
-input = sys.stdin.readline
+INF = sys.maxsize
 
-N, M, K = map(int, input().split())
-K += 1
+N, M, K = map(int, sys.stdin.readline().rstrip().split())
+road = [[] for _ in range(N+1)]
 
-visited = [[False]*K for _ in range(N)]
-distance = [[INF] * K for _ in range(N)]
-
-queue = []
-heapq.heappush(queue, (0, 0, K - 1))
-
-road = [[] for _ in range(N)]
-
-# 양방향 도로이므로
 for _ in range(M):
-    start, end, time = map(int, input().split())
-    road[start - 1].append((end - 1, time))
-    road[end - 1].append((start - 1, time))
+    start, end, time = map(int, sys.stdin.readline().rstrip().split())
+    road[start].append([end, time])
+    road[end].append([start, time])
 
-# 서울은 0으로 초기화
-for i in range(K):
-    distance[0][i] = 0
+dp = [[INF for _ in range(K+1)] for _ in range(N+1)]
 
-while queue:
-    res = heapq.heappop(h)
-    cur_city, count = res[1], res[2]
+pq = [[0, 1, 0]]
 
-    if visited[cur_city][count]:
-        continue  # 이미 방문한 경우
-    visited[cur_city][count] = True
+while pq:
+    cur_cost, cur_road, cur_k = heapq.heappop(pq)
 
-    # 시간 부족으로 fail
+    if dp[cur_road][cur_k] < cur_cost:
+        continue
+
+    for next_node, next_cost in road[cur_road]:
+        if dp[next_node][cur_k] > cur_cost + next_cost:
+            dp[next_node][cur_k] = cur_cost + next_cost
+            pq.append([cur_cost + next_cost, next_node, cur_k])
+
+        if cur_k < K:
+            if dp[next_node][cur_k+1] > cur_cost:
+                dp[next_node][cur_k + 1] = cur_cost
+                pq.append([cur_cost, next_node, cur_k+1])
+
+print(min(dp[N]))
