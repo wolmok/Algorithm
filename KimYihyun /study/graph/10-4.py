@@ -18,7 +18,7 @@ def union_parent(parent, a, b):
 
 
 v, e = map(int, input().split())
-parent = [0] * v+1  # 부모 테이블 초기화
+parent = [0] * (v+1)  # 부모 테이블 초기화
 
 for i in range(1, v+1):
     parent[i] = i  # 처음에는 자기 자신으로 부모 테이블 초기화
