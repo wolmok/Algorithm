@@ -13,7 +13,7 @@ def solution(s):
 
         for i in range(length, len(s), length):
             if key == s[i:i+length]:
-                cncountt += 1
+                count += 1
             else:
                 new_str.append([key, count])
                 count = 1
