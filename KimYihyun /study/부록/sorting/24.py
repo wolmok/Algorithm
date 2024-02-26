@@ -1,19 +1,15 @@
-# 안테나 (답 맞고 시간 초과)
+# 안테나
 # https://www.acmicpc.net/problem/18310
 
 N = int(input())  # 집의 개수
 houses = list(map(int, input().split()))  # 집의 위치
-location = []
 
-for antenna in houses:
+houses.sort() 
 
-    distance = 0
-    for house in houses:
-        distance += abs(antenna - house)
+# 안테나를 중간에 설치하는 경우
+if N % 2 == 0:
+    antenna_position = houses[N // 2 - 1]
+else:
+    antenna_position = houses[N // 2]
 
-    location.append((antenna, distance))
-
-min_distance = min(location, key=lambda x: x[1])
-
-
-print(min_distance[0])
+print(antenna_position)
