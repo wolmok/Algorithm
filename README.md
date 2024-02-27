@@ -1,8 +1,8 @@
 # Algorithm
 
 📕 스터디
-💭 진행 방식 👀 
-https://github.com/ndb796/python-for-coding-test
+<br/>
+💭 진행 방식 👀 [ https://github.com/ndb796/python-for-coding-test ]
 > 1. 일일 스터디 시간 및 데일리 활동 (**진도는 함께**, e-book 공유)
 > 
 > - **월 / 목 (모각코)** 10 : 00 ~ 11 : 30 Discord(디스코드) 🧠 → 1시간에 2문제 풀기 !
