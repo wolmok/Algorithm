@@ -102,6 +102,7 @@ https://github.com/ndb796/python-for-coding-test
 | --- | --- | --- |
 | [solved] | 풀었을 시 | [solved] boj 1001 A+B |
 | [failed] | 실패할 시 | [falied] boj 1001 A+B |
+| [failed-solved] | 실패 이후 이해하고 풀었을 시 | [failed-solved] boj 1001 A+B |
 | [fix] | 수정 시 | [fix] change type |
 | [docs] | 문서 |  |
 | [chore] | 빌드, 설정 파일 | [chore] change settings |
