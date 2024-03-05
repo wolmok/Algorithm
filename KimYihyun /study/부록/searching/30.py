@@ -1,36 +1,36 @@
 # 가사 검색
 # https://programmers.co.kr/learn/courses/30/lessons/60060
 
+from bisect import bisect_left, bisect_right
+
 def solution(words, queries):
-    res = count_about_query(words, queries)
-    answer = question(queries, res)
+    answer = []
+    word_dict = {}
+    reversed_word_dict = {}
+
+    for word in words:
+        word_len = len(word)
+        if word_len not in word_dict:
+            word_dict[word_len] = []
+            reversed_word_dict[word_len] = []
+        word_dict[word_len].append(word)
+        reversed_word_dict[word_len].append(word[::-1])
+
+    for key in word_dict.keys():
+        word_dict[key].sort()
+        reversed_word_dict[key].sort()
+
+    for query in queries:
+        if query[0] != "?":
+            cnt = count_by_range(word_dict.get(len(query), []), query.replace("?", "a"), query.replace("?", "z"))
+        else:
+            cnt = count_by_range(reversed_word_dict.get(len(query), []), query[::-1].replace("?", "a"), query[::-1].replace("?", "z"))
+        answer.append(cnt)
+
     return answer
 
-# 중복 없는 저장을 위해 딕셔너리 형태를 사용
-# 매칭되는 단어를 직접 세는 것은 선형 탐색으로 시간초과, 따라서 집합의 크기를 사용해야 함
-def count_about_query(words, queries):
-    res = {}
-    for query in queries:
-        prefix = True if query[0] == '?' else False
-        query_length = len(query)
-        res[query] = set()
-        for word in words:
-            if len(word) == query_length:
-                if prefix:  # 쿼리가 접두사
-                    if word.endswith(query.replace('?', '')):
-                        res[query].add(word)
-                else:  # 쿼리가 접미사
-                    if word.startswith(query.replace('?', '')):
-                        res[query].add(word)
-    return res
-
-def question(queries, res):
-    Result = []
-    for query in queries:
-        cnt = 0
-        filtered_strings = [s for s in res[query] if len(s) == len(query)]
-        for string in filtered_strings:
-            cnt += 1
-        Result.append(cnt)
-    return Result
+def count_by_range(arr, left, right):
+    left_idx = bisect_left(arr, left)
+    right_idx = bisect_right(arr, right)
+    return right_idx - left_idx
 
