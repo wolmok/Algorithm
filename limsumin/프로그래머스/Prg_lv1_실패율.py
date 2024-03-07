@@ -1,4 +1,3 @@
-# 정답률: 76%
 from collections import defaultdict
 
 def solution(N, stages):
@@ -14,6 +13,7 @@ def solution(N, stages):
     for i in range(1, N+1):
         if total == 0:
             fail_dict[i] = 0
+            continue
         if total != 0:
             fail_dict[i] = stages_cnt[i] / total
             total -= stages_cnt[i]
