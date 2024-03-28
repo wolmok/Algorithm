@@ -1,5 +1,4 @@
 # 최단 경로 - 숨바꼭질
-
 import heapq
 
 INF = int(1e9)
